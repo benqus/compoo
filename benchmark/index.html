@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Compoo - benchmark</title>
+    
+    <style>
+      article > p > span {
+        font-weight: bold;
+      }
+    </style>
+    
+    <script src="../compoo.js"></script>
+    <script>
+      /*global: Compoo*/
+      (function () {
+        var repeat = 10;
+        var iterations = 100000;
+        var results = {
+          one: [],
+          two: [],
+          three: []
+        };
+        
+        var Super = function () {};
+        
+        var ClassOne = function (id) {
+          Super.call(this);
+          this.id = id;
+        };
+        
+        var ClassTwo = Compoo.extend({
+          constrcutor: function (id) {
+            this.id = id;
+          }
+        });
+        
+        function benchmarkOne() {
+          var i = 0;
+          var start = Date.now();
+          
+          while (i++ < iterations) {
+            new ClassOne(i);
+          }
+          
+          return(Date.now() - start);
+        }
+        
+        function benchmarkTwo() {
+          var i = 0;
+          var start = Date.now();
+          var constructor = ClassTwo.constructor;
+          
+          while (i++ < iterations) {
+            new constructor(i);
+          }
+          
+          return(Date.now() - start);
+        }
+        
+        function benchmarkThree() {
+          var i = 0;
+          var start = Date.now();
+          
+          while (i++ < iterations) {
+            ClassTwo.create(i);
+          }
+          
+          return(Date.now() - start);
+        }
+        
+        function printResults() {
+          var one = [
+            Math.min.apply(Math, results.one),
+            Math.max.apply(Math, results.one),
+          ].join(' - ');
+          
+          var two = [
+            Math.min.apply(Math, results.two),
+            Math.max.apply(Math, results.two),
+          ].join(' - ');
+          
+          var three = [
+            Math.min.apply(Math, results.three),
+            Math.max.apply(Math, results.three),
+          ].join(' - ');
+          
+          document.getElementById('one').innerText = one;
+          document.getElementById('two').innerText = two;
+          document.getElementById('three').innerText = three;
+        }
+        
+        window.onload = function () {
+          var i = 0;
+          
+          while (i++ < repeat) {
+            results.one.push(benchmarkOne());
+            results.two.push(benchmarkTwo());
+            results.three.push(benchmarkThree());
+          }
+          
+          printResults();
+        };
+        
+      })();
+    </script>
+  </head>
+  <body>
+    <article>
+      <p>
+        Classical way ( new Class(); ): <span id="one"></span> ms
+      </p>
+    </article>
+    
+    <article>
+      <p>
+        Compoo via constructor ( new [Compoo].constrcutor(); ): <span id="two"></span> ms
+      </p>
+    </article>
+    
+    <article>
+      <p>
+        Compoo via create ( [Compoo].create(); ): <span id="three"></span> ms
+      </p>
+    </article>
+  </body>
+</html>

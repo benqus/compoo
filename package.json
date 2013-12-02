@@ -1,0 +1,15 @@
+{
+  "name": "compoo",
+  "version": "0.1.0",
+  "author": "Bence Kormos (https://github.com/benqus)",
+  "description": "Simple and basic life-cycle and inheritance JS screwdriver.",
+  "main": "./compoo.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benqus/compoo.git"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/benqus/compoo/blob/master/LICENSE"
+  }
+}

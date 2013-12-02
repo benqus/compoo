@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Compoo - Simple and basic life-cycle and inheritance JS screwdriver.</title>
+    
+    <script src="compoo.js"></script>
+    <script>
+      /*global: Compoo*/
+      (function () {
+        // viola, a class inheriting from Compoo
+        var Person = Compoo.extend({
+          sayHi: function (personName) {
+            console.log("Yo, " + personName + "!");
+          }
+        });
+        
+        var Dude = Person.extend({
+          sayHi: function (otherDude) {
+              // notice that you don't need to use Person.prototype
+              Person.sayHi.call(this);
+              
+              console.log("You're the dude of " + otherDude);
+          }
+        });
+        
+        var person = new Person.constructor();
+        
+        console.log(person.is(Person), person.is(Dude));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
