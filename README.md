@@ -28,7 +28,7 @@ use...
       }
     });
     
-### Instantition
+### Instantiation
 
 Normal Compoo way - slower but more conventient from JS point of view:
 
