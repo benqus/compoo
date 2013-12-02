@@ -38,6 +38,21 @@ Classical way with the `new` keyword - faster but meh...:
 
     var thatDude = new Person.constructor();
 
+### Extending Compoo
+
+Extending Compoo via the api object will make Compoo and every derived object inherit the new feature.
+
+Example:
+
+    Compoo.api.extend('getName', function () {
+      return this.name;
+    });
+
+will result in:
+
+    var person = new Person.constructor('Jon');
+    person.getName(); // 'Jon'
+
 ### Reflection
 
     var person = new Person.constructor();

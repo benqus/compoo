@@ -34,7 +34,25 @@
     return obj;
   };
   
-  var Compoo = {
+  // extensible API, extending this will provide
+  // the new features to every Compoo instance
+  var baseApi = {
+    
+    // shorthand for reflection
+    is: function (component) {
+      // this is actually fun stuff...
+      return (this instanceof component.constructor);
+    },
+    
+    // shorthand for hasOwnProperty
+    has: function (property) {
+      return (this.hasOwnProperty(property));
+    }
+  };
+  
+  var Compoo = _create(baseApi);
+  
+  _extend(Compoo, {
     // API life-cycle methods
     initialize: noOp,
     suspend: noOp,
@@ -66,16 +84,32 @@
       return component;
     },
     
-    // shorthand for reflection
-    is: function (component) {
-      // this is actually fun stuff...
-      return (this instanceof component.constructor);
+    implement : function () {
+      var features = _slice.call(arguments);
+      var feature;
+      
+      while (features.length > 0) {
+        feature = features.shift();
+        _extend(this, feature);
+      }
+      
+      return this;
     },
     
-    has: function (property) {
-      return (this.hasOwnProperty(property));
+    api: {
+      // extends the baseApi to provide new features to instance prototypes
+      extend: function (key, feature) {
+        if (typeof key === 'string' &&
+          typeof feature === 'function' &&
+          !baseApi.has(key)
+        ) {
+          baseApi[key] = feature;
+        }
+
+        return this;
+      }
     }
-  };
+  });
   
   _global.Compoo = Compoo;
 })(function () {
