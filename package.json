@@ -1,6 +1,6 @@
 {
   "name": "compoo",
-  "version": "0.3.0",
+  "version": "0.2.1",
   "author": "Bence Kormos (https://github.com/benqus)",
   "description": "Simple and basic life-cycle and inheritance JS screwdriver.",
   "main": "./compoo.js",
