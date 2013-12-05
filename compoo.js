@@ -47,6 +47,17 @@
     // shorthand for hasOwnProperty
     has: function (property) {
       return (this.hasOwnProperty(property));
+    },
+    
+    // returns the required attribute's value specified by a key
+    get: function (key) {
+      return this[key];
+    },
+    
+    // sets the specified attribute's value on the context
+    set: function (key, value) {
+      this[key] = value;
+      return this;
     }
   };
   
@@ -84,7 +95,8 @@
       return component;
     },
     
-    implement : function () {
+    // implements features from the given mixins/objects
+    implement: function () {
       var features = _slice.call(arguments);
       var feature;
       
@@ -94,6 +106,16 @@
       }
       
       return this;
+    },
+    
+    // builds a new object based on the context's
+    // prototype and clones the attributes
+    clone: function (attributes) {
+      var clone = _create(this.constructor.prototype);
+      
+      clone.implement(this, attributes);
+      
+      return clone;
     },
     
     api: {

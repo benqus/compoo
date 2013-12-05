@@ -6,7 +6,7 @@
     <script src="compoo.js"></script>
     <script>
       /*global: Compoo*/
-      (function () {
+      (function (Compoo) {
         // viola, a class inheriting from Compoo
         var Person = Compoo.extend({
           sayHi: function (personName) {
@@ -26,7 +26,7 @@
         var person = new Person.constructor();
         
         console.log(person.is(Person), person.is(Dude));
-      })();
+      })(Compoo);
     </script>
   </head>
   <body></body>

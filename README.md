@@ -53,6 +53,23 @@ will result in:
     var person = new Person.constructor('Jon');
     person.getName(); // 'Jon'
 
+### Mixins
+
+    person.implement(
+      {jsNinja: true},
+      {
+        likesJS: function () {
+          return true;
+        }
+      }
+    );
+
+### Cloning
+
+    var otherPerson = person.clone({
+      name: 'Jacob'
+    });
+
 ### Reflection
 
     var person = new Person.constructor();
