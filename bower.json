@@ -1,0 +1,28 @@
+{
+  "name": "Compoo",
+  "version": "0.2.1",
+  "homepage": "https://github.com/benqus/compoo",
+  "authors": [
+    "Bence Kormos <ben.kormos@gmail.com>"
+  ],
+  "description": "Simple and basic life-cycle and inheritance JS screwdriver.",
+  "main": "./compoo.js",
+  "devDependencies": {
+    "jasmine": "v2.0.0.rc5"
+  },
+  "keywords": [
+    "life",
+    "cycle",
+    "life-cycle",
+    "inheritance",
+    "prototype"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
